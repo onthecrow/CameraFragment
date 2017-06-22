@@ -128,6 +128,25 @@ public final class CameraHelper {
 
         Collections.sort(choices, new CompareSizesByArea2());
 
+        try{
+            switch (mediaQuality){
+                case Configuration.MEDIA_QUALITY_HIGHEST:
+                    return choices.get(choices.size()-1);
+                case Configuration.MEDIA_QUALITY_HIGH:
+                    return choices.get(choices.size()-2);
+                case Configuration.MEDIA_QUALITY_MEDIUM:
+                    return choices.get(choices.size()-3);
+                case Configuration.MEDIA_QUALITY_LOW:
+                    return choices.get(choices.size()-4);
+                case Configuration.MEDIA_QUALITY_LOWEST:
+                    return choices.get(0);
+            }
+        }
+        catch (IndexOutOfBoundsException e){
+            e.printStackTrace();
+        }
+
+
         if (mediaQuality == Configuration.MEDIA_QUALITY_HIGHEST) {
             result = maxPictureSize;
         } else if (mediaQuality == Configuration.MEDIA_QUALITY_LOW) {

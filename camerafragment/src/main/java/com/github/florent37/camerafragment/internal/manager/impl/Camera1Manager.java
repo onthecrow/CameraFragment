@@ -625,6 +625,7 @@ public class Camera1Manager extends BaseCameraManager<Integer, SurfaceHolder.Cal
         photoQualities.add(new PhotoQualityOption(Configuration.MEDIA_QUALITY_HIGHEST, getPhotoSizeForQuality(Configuration.MEDIA_QUALITY_HIGHEST)));
         photoQualities.add(new PhotoQualityOption(Configuration.MEDIA_QUALITY_HIGH, getPhotoSizeForQuality(Configuration.MEDIA_QUALITY_HIGH)));
         photoQualities.add(new PhotoQualityOption(Configuration.MEDIA_QUALITY_MEDIUM, getPhotoSizeForQuality(Configuration.MEDIA_QUALITY_MEDIUM)));
+        photoQualities.add(new PhotoQualityOption(Configuration.MEDIA_QUALITY_LOW, getPhotoSizeForQuality(Configuration.MEDIA_QUALITY_LOW)));
         photoQualities.add(new PhotoQualityOption(Configuration.MEDIA_QUALITY_LOWEST, getPhotoSizeForQuality(Configuration.MEDIA_QUALITY_LOWEST)));
 
         final CharSequence[] array = new CharSequence[photoQualities.size()];
