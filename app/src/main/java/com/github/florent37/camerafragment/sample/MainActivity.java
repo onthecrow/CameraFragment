@@ -67,6 +67,22 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
+    @OnClick(R.id.zoom)
+    public void zoom() {
+        final CameraFragmentApi cameraFragment = getCameraFragment();
+        if (cameraFragment != null) {
+            cameraFragment.addZoom();
+        }
+    }
+
+    @OnClick(R.id.dezoom)
+    public void deZoom() {
+        final CameraFragmentApi cameraFragment = getCameraFragment();
+        if (cameraFragment != null) {
+            cameraFragment.deZoom();
+        }
+    }
+
     @OnClick(R.id.flash_switch_view)
     public void onFlashSwitcClicked() {
         final CameraFragmentApi cameraFragment = getCameraFragment();
@@ -88,18 +104,18 @@ public class MainActivity extends AppCompatActivity {
         final CameraFragmentApi cameraFragment = getCameraFragment();
         if (cameraFragment != null) {
             cameraFragment.takePhotoOrCaptureVideo(new CameraFragmentResultAdapter() {
-                @Override
-                public void onVideoRecorded(String filePath) {
-                    Toast.makeText(getBaseContext(), "onVideoRecorded " + filePath, Toast.LENGTH_SHORT).show();
-                }
+                                                       @Override
+                                                       public void onVideoRecorded(String filePath) {
+                                                           Toast.makeText(getBaseContext(), "onVideoRecorded " + filePath, Toast.LENGTH_SHORT).show();
+                                                       }
 
-                @Override
-                public void onPhotoTaken(byte[] bytes, String filePath) {
-                    Toast.makeText(getBaseContext(), "onPhotoTaken " + filePath, Toast.LENGTH_SHORT).show();
-                }
-            },
-            "/storage/self/primary",
-            "photo0");
+                                                       @Override
+                                                       public void onPhotoTaken(byte[] bytes, String filePath) {
+                                                           Toast.makeText(getBaseContext(), "onPhotoTaken " + filePath, Toast.LENGTH_SHORT).show();
+                                                       }
+                                                   },
+                    "/storage/self/primary",
+                    "photo0");
         }
     }
 
@@ -156,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
         cameraLayout.setVisibility(View.VISIBLE);
 
         final CameraFragment cameraFragment = CameraFragment.newInstance(new Configuration.Builder()
-                .setCamera(Configuration.CAMERA_FACE_REAR).build());
+                .setCamera(Configuration.CAMERA_FACE_REAR).setMediaQuality(Configuration.MEDIA_QUALITY_HIGHEST).build());
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.content, cameraFragment, FRAGMENT_TAG)
                 .commitAllowingStateLoss();

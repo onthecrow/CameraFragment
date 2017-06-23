@@ -751,4 +751,14 @@ public abstract class BaseAnncaFragment<CameraId> extends Fragment implements Ca
     public void setResultListener(CameraFragmentResultListener cameraFragmentResultListener) {
         this.cameraFragmentResultListener = cameraFragmentResultListener;
     }
+
+    @Override
+    public void addZoom() {
+        cameraController.addZoom();
+    }
+
+    @Override
+    public void deZoom() {
+        cameraController.deZoom();
+    }
 }

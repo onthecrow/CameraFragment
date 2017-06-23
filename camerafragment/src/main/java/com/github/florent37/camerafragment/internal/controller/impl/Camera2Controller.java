@@ -212,4 +212,14 @@ public class Camera2Controller implements CameraController<String>,
     public CharSequence[] getPhotoQualityOptions() {
         return camera2Manager.getPhotoQualityOptions();
     }
+
+    @Override
+    public void addZoom() {
+        //todo
+    }
+
+    @Override
+    public void deZoom() {
+        //todo
+    }
 }
