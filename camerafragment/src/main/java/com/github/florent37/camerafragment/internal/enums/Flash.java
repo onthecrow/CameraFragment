@@ -9,8 +9,9 @@ public class Flash {
     public static final int FLASH_ON = 0;
     public static final int FLASH_OFF = 1;
     public static final int FLASH_AUTO = 2;
+    public static final int FLASH_TORCH = 3;
 
-    @IntDef({FLASH_ON, FLASH_OFF, FLASH_AUTO})
+    @IntDef({FLASH_ON, FLASH_OFF, FLASH_AUTO, FLASH_TORCH})
     @Retention(RetentionPolicy.SOURCE)
     public @interface FlashMode {
     }

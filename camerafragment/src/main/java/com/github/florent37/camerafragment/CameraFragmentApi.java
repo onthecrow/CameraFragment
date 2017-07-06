@@ -23,6 +23,8 @@ public interface CameraFragmentApi {
 
     void toggleFlashMode();
 
+    void toggleTorchMode();
+
     void setStateListener(CameraFragmentStateListener cameraFragmentStateListener);
 
     void setTextListener(CameraFragmentVideoRecordTextListener cameraFragmentVideoRecordTextListener);

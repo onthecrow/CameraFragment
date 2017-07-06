@@ -478,6 +478,9 @@ public class Camera1Manager extends BaseCameraManager<Integer, SurfaceHolder.Cal
                 case Configuration.FLASH_MODE_OFF:
                     parameters.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
                     break;
+                case Configuration.FLASH_MODE_TORCH:
+                    parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+                    break;
                 default:
                     parameters.setFlashMode(Camera.Parameters.FLASH_MODE_AUTO);
                     break;
