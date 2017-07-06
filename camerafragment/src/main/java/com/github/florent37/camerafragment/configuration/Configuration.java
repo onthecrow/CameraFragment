@@ -44,6 +44,7 @@ public final class Configuration implements Serializable {
     public static final int FLASH_MODE_ON = 1;
     public static final int FLASH_MODE_OFF = 2;
     public static final int FLASH_MODE_AUTO = 3;
+    public static final int FLASH_MODE_TORCH = 4;
 
     @IntDef({MEDIA_QUALITY_AUTO, MEDIA_QUALITY_LOWEST, MEDIA_QUALITY_LOW, MEDIA_QUALITY_MEDIUM, MEDIA_QUALITY_HIGH, MEDIA_QUALITY_HIGHEST})
     @Retention(RetentionPolicy.SOURCE)
@@ -55,7 +56,7 @@ public final class Configuration implements Serializable {
     public @interface MediaAction {
     }
 
-    @IntDef({FLASH_MODE_ON, FLASH_MODE_OFF, FLASH_MODE_AUTO})
+    @IntDef({FLASH_MODE_ON, FLASH_MODE_OFF, FLASH_MODE_AUTO, FLASH_MODE_TORCH})
     @Retention(RetentionPolicy.SOURCE)
     public @interface FlashMode {
     }

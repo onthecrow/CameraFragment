@@ -20,6 +20,8 @@ public interface CameraFragmentStateListener {
     void onFlashOn();
     //when the flash is off
     void onFlashOff();
+    //when the flash is torch
+    void onFlashTorch();
 
     //if the camera is ready to take a photo
     void onCameraSetupForPhoto();

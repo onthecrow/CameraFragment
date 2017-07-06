@@ -34,6 +34,11 @@ public class CameraFragmentStateAdapter implements CameraFragmentStateListener {
     }
 
     @Override
+    public void onFlashTorch() {
+
+    }
+
+    @Override
     public void onCameraSetupForPhoto() {
 
     }

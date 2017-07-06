@@ -110,6 +110,11 @@ public class MainActivityCustoms extends AppCompatActivity {
                 }
 
                 @Override
+                public void onFlashTorch() {
+
+                }
+
+                @Override
                 public void onCameraSetupForPhoto() {
                     mediaActionSwitchView.setText("photo");
                     recordButton.setText("take photo");

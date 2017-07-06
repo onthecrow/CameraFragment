@@ -260,6 +260,9 @@ public abstract class BaseAnncaFragment<CameraId> extends Fragment implements Ca
             case Configuration.FLASH_MODE_OFF:
                 setFlashMode(Flash.FLASH_OFF);
                 break;
+            case Configuration.FLASH_MODE_TORCH:
+                setFlashMode(Flash.FLASH_TORCH);
+                break;
         }
 
         if (cameraFragmentControlsListener != null) {
@@ -492,6 +495,22 @@ public abstract class BaseAnncaFragment<CameraId> extends Fragment implements Ca
             case Flash.FLASH_ON:
                 currentFlashMode = Flash.FLASH_AUTO;
                 break;
+            case Flash.FLASH_TORCH:
+                currentFlashMode = Flash.FLASH_OFF;
+                break;
+        }
+        onFlashModeChanged();
+    }
+
+    @Override
+    public void toggleTorchMode() {
+        switch (currentFlashMode) {
+            case Flash.FLASH_TORCH:
+                currentFlashMode = Flash.FLASH_OFF;
+                break;
+            default:
+                currentFlashMode = Flash.FLASH_TORCH;
+                break;
         }
         onFlashModeChanged();
     }
@@ -513,6 +532,10 @@ public abstract class BaseAnncaFragment<CameraId> extends Fragment implements Ca
                 configurationProvider.setFlashMode(Configuration.FLASH_MODE_OFF);
                 this.cameraController.setFlashMode(Configuration.FLASH_MODE_OFF);
                 break;
+            case Flash.FLASH_TORCH:
+                if (cameraFragmentStateListener != null) cameraFragmentStateListener.onFlashTorch();
+                configurationProvider.setFlashMode(Configuration.FLASH_MODE_TORCH);
+                this.cameraController.setFlashMode(Configuration.FLASH_MODE_TORCH);
         }
     }
 

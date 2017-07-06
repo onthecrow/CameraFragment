@@ -10,6 +10,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -201,6 +202,11 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onFlashOff() {
                     flashSwitchView.displayFlashOff();
+                }
+
+                @Override
+                public void onFlashTorch() {
+
                 }
 
                 @Override
