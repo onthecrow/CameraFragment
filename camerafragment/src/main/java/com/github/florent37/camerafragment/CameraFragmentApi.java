@@ -33,4 +33,8 @@ public interface CameraFragmentApi {
 
     void setResultListener(CameraFragmentResultListener cameraFragmentResultListener);
 
+    void addZoom();
+
+    void deZoom();
+
 }

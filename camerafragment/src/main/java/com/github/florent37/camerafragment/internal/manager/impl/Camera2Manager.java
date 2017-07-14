@@ -829,6 +829,16 @@ public final class Camera2Manager extends BaseCameraManager<String, TextureView.
         return array;
     }
 
+    @Override
+    public void addZoom() {
+        //TODO
+    }
+
+    @Override
+    public void deZoom() {
+        //TODO
+    }
+
     @IntDef({STATE_PREVIEW, STATE_WAITING_LOCK, STATE_WAITING_PRE_CAPTURE, STATE_WAITING_NON_PRE_CAPTURE, STATE_PICTURE_TAKEN})
     @Retention(RetentionPolicy.SOURCE)
     @interface CameraPreviewState {

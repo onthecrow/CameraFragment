@@ -145,4 +145,6 @@ abstract class BaseCameraManager<CameraId, SurfaceListener>
     public void setCameraId(CameraId currentCameraId) {
         this.currentCameraId = currentCameraId;
     }
+
+
 }

@@ -2,8 +2,6 @@ package com.github.florent37.camerafragment.internal.manager;
 
 import android.content.Context;
 
-import java.io.File;
-
 import com.github.florent37.camerafragment.configuration.Configuration;
 import com.github.florent37.camerafragment.configuration.ConfigurationProvider;
 import com.github.florent37.camerafragment.internal.manager.listener.CameraCloseListener;
@@ -12,6 +10,8 @@ import com.github.florent37.camerafragment.internal.manager.listener.CameraPhoto
 import com.github.florent37.camerafragment.internal.manager.listener.CameraVideoListener;
 import com.github.florent37.camerafragment.internal.utils.Size;
 import com.github.florent37.camerafragment.listeners.CameraFragmentResultListener;
+
+import java.io.File;
 
 /*
  * Created by memfis on 8/14/16.
@@ -55,4 +55,10 @@ public interface CameraManager<CameraId, SurfaceListener> {
     CharSequence[] getPhotoQualityOptions();
 
     void setCameraId(CameraId currentCameraId);
+
+    void addZoom();
+
+    void deZoom();
+
+
 }

@@ -52,6 +52,8 @@ public class Camera1Manager extends BaseCameraManager<Integer, SurfaceHolder.Cal
 
     private Integer futurFlashMode;
 
+    private int currentZoomLevel;
+
     @Override
     public void openCamera(final Integer cameraId,
                            final CameraOpenListener<Integer, SurfaceHolder.Callback> cameraOpenListener) {
@@ -62,7 +64,7 @@ public class Camera1Manager extends BaseCameraManager<Integer, SurfaceHolder.Cal
                 try {
                     camera = Camera.open(cameraId);
                     prepareCameraOutputs();
-                    if(futurFlashMode != null) {
+                    if (futurFlashMode != null) {
                         setFlashMode(futurFlashMode);
                         futurFlashMode = null;
                     }
@@ -168,6 +170,7 @@ public class Camera1Manager extends BaseCameraManager<Integer, SurfaceHolder.Cal
                     @Override
                     public void onPictureTaken(byte[] bytes, Camera camera) {
                         Camera1Manager.this.onPictureTaken(bytes, camera, callback);
+                        camera.startPreview();
                     }
                 });
             }
@@ -259,6 +262,42 @@ public class Camera1Manager extends BaseCameraManager<Integer, SurfaceHolder.Cal
     @Override
     public Size getPhotoSizeForQuality(@Configuration.MediaQuality int mediaQuality) {
         return CameraHelper.getPictureSize(Size.fromList(camera.getParameters().getSupportedPictureSizes()), mediaQuality);
+    }
+
+    public void addZoom() {
+        Camera.Parameters params = camera.getParameters();
+        if (!params.isZoomSupported()) {
+            Log.e(TAG, "zoom not supported!");
+            return;
+        }
+        int maxZoomLevel = params.getMaxZoom();
+        Log.d(TAG, "max zoom level: " + maxZoomLevel);
+        if (currentZoomLevel < maxZoomLevel) {
+            currentZoomLevel++;
+            if (params.isSmoothZoomSupported())
+                camera.startSmoothZoom(currentZoomLevel);
+            else {
+                params.setZoom(currentZoomLevel);
+                camera.setParameters(params);
+            }
+        }
+    }
+
+    public void deZoom() {
+        Camera.Parameters params = camera.getParameters();
+        if (!params.isZoomSupported()) {
+            Log.e(TAG, "zoom not supported!");
+            return;
+        }
+        if (currentZoomLevel > 0) {
+            currentZoomLevel--;
+            if (params.isSmoothZoomSupported())
+                camera.startSmoothZoom(currentZoomLevel);
+            else {
+                params.setZoom(currentZoomLevel);
+                camera.setParameters(params);
+            }
+        }
     }
 
     @Override
@@ -627,6 +666,7 @@ public class Camera1Manager extends BaseCameraManager<Integer, SurfaceHolder.Cal
         photoQualities.add(new PhotoQualityOption(Configuration.MEDIA_QUALITY_HIGHEST, getPhotoSizeForQuality(Configuration.MEDIA_QUALITY_HIGHEST)));
         photoQualities.add(new PhotoQualityOption(Configuration.MEDIA_QUALITY_HIGH, getPhotoSizeForQuality(Configuration.MEDIA_QUALITY_HIGH)));
         photoQualities.add(new PhotoQualityOption(Configuration.MEDIA_QUALITY_MEDIUM, getPhotoSizeForQuality(Configuration.MEDIA_QUALITY_MEDIUM)));
+        photoQualities.add(new PhotoQualityOption(Configuration.MEDIA_QUALITY_LOW, getPhotoSizeForQuality(Configuration.MEDIA_QUALITY_LOW)));
         photoQualities.add(new PhotoQualityOption(Configuration.MEDIA_QUALITY_LOWEST, getPhotoSizeForQuality(Configuration.MEDIA_QUALITY_LOWEST)));
 
         final CharSequence[] array = new CharSequence[photoQualities.size()];

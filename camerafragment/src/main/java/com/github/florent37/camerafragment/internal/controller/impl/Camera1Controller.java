@@ -209,4 +209,14 @@ public class Camera1Controller implements CameraController<Integer>,
     public CharSequence[] getPhotoQualityOptions() {
         return cameraManager.getPhotoQualityOptions();
     }
+
+    @Override
+    public void addZoom() {
+        cameraManager.addZoom();
+    }
+
+    @Override
+    public void deZoom() {
+        cameraManager.deZoom();
+    }
 }
